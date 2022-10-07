@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { NAVLINKS } from '../../../data/navLink';
-import GradientText from '../../../utils/gradientText';
 
 export default function Header() {
-  const span = <span>DEV</span>;
+  const router = useRouter();
   return (
     <header className='container max-w-6xl mx-auto flex items-center justify-between gap-2 py-6 font-semibold'>
       <div>
@@ -21,7 +21,13 @@ export default function Header() {
           {NAVLINKS.map((link, i) => (
             <li key={i}>
               <Link href={link.path}>
-                <a className='hover:bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-clip-text hover:text-transparent'>
+                <a
+                  className={`hover:bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-clip-text hover:text-transparent ${
+                    router.pathname === link.path
+                      ? 'bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent'
+                      : ''
+                  }`}
+                >
                   {link.name}
                 </a>
               </Link>
@@ -30,24 +36,36 @@ export default function Header() {
         </ul>
       </nav>
       <div className='flex gap-5'>
-        <Image
-          src='/images/icons/githubIcon.svg'
-          alt=''
-          width={20}
-          height={20}
-        />
-        <Image
-          src='/images/icons/twitterIcon.svg'
-          alt=''
-          width={20}
-          height={20}
-        />
-        <Image
-          src='/images/icons/linkedinIcon.svg'
-          alt=''
-          width={20}
-          height={20}
-        />
+        <Link href='https://github.com/smmahadee'>
+          <a className='flex items-center'>
+            <Image
+              src='/images/icons/githubIcon.svg'
+              alt=''
+              width={20}
+              height={20}
+            />
+          </a>
+        </Link>
+        <Link href='https://twitter.com/SmMahadee'>
+          <a className='flex items-center'>
+            <Image
+              src='/images/icons/twitterIcon.svg'
+              alt=''
+              width={20}
+              height={20}
+            />
+          </a>
+        </Link>
+        <Link href='https://www.linkedin.com/in/mehediask/'>
+          <a className='flex items-center'>
+            <Image
+              src='/images/icons/linkedinIcon.svg'
+              alt=''
+              width={20}
+              height={20}
+            />
+          </a>
+        </Link>
       </div>
     </header>
   );

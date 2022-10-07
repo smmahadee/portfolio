@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { PROJECTS } from '../../data/projects';
 import ProjectCard from '../projects/ProjectCard';
 
 export default function Projects({ position = 'center' }) {
@@ -12,9 +12,10 @@ export default function Projects({ position = 'center' }) {
       </p>
 
       <div className='grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-y-16 relative'>
-        <ProjectCard positon='left'/>
-        <ProjectCard />
-        <ProjectCard />
+        {PROJECTS.map((project, i) => {
+          console.log(project);
+          return <ProjectCard key={i} positon='left' project={project} />;
+        })}
       </div>
     </section>
   );
