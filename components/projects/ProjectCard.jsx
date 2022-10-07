@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function ProjectCard() {
+export default function ProjectCard({positon}) {
   return (
-    <div className='max-w-xs mx-auto'>
+    <div className={`max-w-xs ${positon ? '' : 'mx-auto'}`}>
       <Image
         className='rounded-t-xl'
         src='/images/windows.jpg'
@@ -41,7 +41,9 @@ export default function ProjectCard() {
               width={16}
             />
             <Link href=''>
-              <a className='hover:bg'> Live Preview</a>
+              <a className='text-sm font-semibold underline underline-offset-2 hover:bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-clip-text hover:text-transparent'>
+                Live Preview
+              </a>
             </Link>
           </div>
           <div className='flex items-center gap-2'>
@@ -52,7 +54,9 @@ export default function ProjectCard() {
               width={16}
             />
             <Link href=''>
-              <a> View Code</a>
+              <a className='text-sm font-semibold underline underline-offset-2 hover:bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-clip-text hover:text-transparent'>
+                View Code
+              </a>
             </Link>
           </div>
         </div>
